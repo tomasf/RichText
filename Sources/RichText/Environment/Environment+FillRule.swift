@@ -3,7 +3,7 @@ import SwiftSCAD
 import QuartzCore
 
 extension CGPath {
-    static internal var fillRuleEnvironmentKey: Environment.ValueKey = .init(rawValue: "CGPath.FillRule")
+    static internal let fillRuleEnvironmentKey: Environment.ValueKey = .init(rawValue: "CGPath.FillRule")
 }
 
 public extension Environment {

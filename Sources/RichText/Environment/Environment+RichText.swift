@@ -2,7 +2,7 @@ import Foundation
 import SwiftSCAD
 
 internal extension Environment {
-    static private var baselineAlignmentEnvironmentKey: Environment.ValueKey = .init(rawValue: "RichText.BaselineAlignment")
+    static private let baselineAlignmentEnvironmentKey: Environment.ValueKey = .init(rawValue: "RichText.BaselineAlignment")
 
     var baselineAlignment: RichText.BaselineAlignment {
         self[Self.baselineAlignmentEnvironmentKey] as? RichText.BaselineAlignment ?? .first
@@ -14,7 +14,7 @@ internal extension Environment {
 }
 
 internal extension Environment {
-    static private var textBoundaryTypeEnvironmentKey: Environment.ValueKey = .init(rawValue: "RichText.TextBoundaryType")
+    static private let textBoundaryTypeEnvironmentKey: Environment.ValueKey = .init(rawValue: "RichText.TextBoundaryType")
 
     var textBoundaryType: RichText.BoundaryType {
         self[Self.textBoundaryTypeEnvironmentKey] as? RichText.BoundaryType ?? .shape
@@ -26,7 +26,7 @@ internal extension Environment {
 }
 
 internal extension Environment {
-    static private var textAttributeContainerEnvironmentKey: Environment.ValueKey = .init(rawValue: "RichText.RextAttributeContainer")
+    static private let textAttributeContainerEnvironmentKey: Environment.ValueKey = .init(rawValue: "RichText.RextAttributeContainer")
 
     var textAttributeContainer: AttributeContainer {
         self[Self.textAttributeContainerEnvironmentKey] as? AttributeContainer ?? .init()

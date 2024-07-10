@@ -2,7 +2,7 @@ import SwiftSCAD
 import Foundation
 import QuartzCore
 
-extension CGPath: Shape2D {
+extension QuartzCore.CGPath: SwiftSCAD.Shape2D {
     public var body: any Geometry2D {
         EnvironmentReader { environment in
             self.componentsSeparated(using: environment.cgPathFillRule).map { component in
