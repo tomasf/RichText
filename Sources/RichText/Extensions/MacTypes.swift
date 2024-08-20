@@ -15,10 +15,10 @@ internal extension Vector2D {
 internal extension Color {
     init(_ nsColor: NSColor) {
         guard let rgb = nsColor.usingColorSpace(.deviceRGB) else {
-            self = .named(.black, alpha: 1)
+            self = .black
             return
         }
-        self = .components(
+        self = .init(
             red: rgb.redComponent,
             green: rgb.greenComponent,
             blue: rgb.blueComponent,
