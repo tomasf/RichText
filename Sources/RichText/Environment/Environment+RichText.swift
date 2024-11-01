@@ -46,7 +46,7 @@ public extension Geometry2D {
         withEnvironment { $0.withBaselineAlignment(alignment) }
     }
 
-    func usingTextAttribute<K: AttributedStringKey>(_ key: K.Type, value: K.Value?) -> any Geometry2D {
+    func usingTextAttribute<K: AttributedStringKey>(_ key: K.Type, value: K.Value?) -> any Geometry2D where K.Value: Sendable {
         withEnvironment { environment in
             var container = environment.textAttributeContainer
             container[K.self] = value
@@ -64,7 +64,7 @@ public extension Geometry3D {
         withEnvironment { $0.withBaselineAlignment(alignment) }
     }
 
-    func usingTextAttribute<K: AttributedStringKey>(_ key: K.Type, value: K.Value?) -> any Geometry3D {
+    func usingTextAttribute<K: AttributedStringKey>(_ key: K.Type, value: K.Value?) -> any Geometry3D where K.Value: Sendable {
         withEnvironment { environment in
             var container = environment.textAttributeContainer
             container[K.self] = value

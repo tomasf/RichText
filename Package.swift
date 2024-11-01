@@ -1,22 +1,21 @@
-// swift-tools-version: 5.9
-// The swift-tools-version declares the minimum version of Swift required to build this package.
+// swift-tools-version: 6.0
 
 import PackageDescription
 
 let package = Package(
     name: "RichText",
-    platforms: [.macOS(.v14)],
+    platforms: [.macOS(.v13)],
     products: [
         .library(name: "RichText", targets: ["RichText"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/tomasf/SwiftSCAD.git", from: "0.7.1"),
-        .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0"),
+        .package(url: "https://github.com/tomasf/SwiftSCAD.git", .upToNextMinor(from: "0.8.1")),
+        .package(url: "https://github.com/apple/swift-log.git", from: "1.6.1"),
     ],
     targets: [
         .target(name: "RichText", dependencies: [
-            "SwiftSCAD",
-            .product(name: "Logging", package: "swift-log")
-        ]),
+            .product(name: "SwiftSCAD", package: "SwiftSCAD"),
+            .product(name: "Logging", package: "swift-log"),
+        ])
     ]
 )

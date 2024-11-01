@@ -1,10 +1,11 @@
 import Foundation
 import SwiftSCAD
-import QuartzCore
+@preconcurrency import QuartzCore
 
 extension CGPath {
     static internal let fillRuleEnvironmentKey: Environment.ValueKey = .init(rawValue: "CGPath.FillRule")
 }
+
 
 public extension Environment {
     var cgPathFillRule: CGPathFillRule {

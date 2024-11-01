@@ -4,9 +4,9 @@ import QuartzCore
 
 extension QuartzCore.CGPath: SwiftSCAD.Shape2D {
     public var body: any Geometry2D {
-        EnvironmentReader { environment in
-            self.componentsSeparated(using: environment.cgPathFillRule).map { component in
-                let (positive, negatives) = component.normalizedPolygons(using: environment.cgPathFillRule)
+        readEnvironment(\.cgPathFillRule) { fillRule in
+            self.componentsSeparated(using: fillRule).map { component in
+                let (positive, negatives) = component.normalizedPolygons(using: fillRule)
                 return positive.subtracting { negatives }
             }
         }

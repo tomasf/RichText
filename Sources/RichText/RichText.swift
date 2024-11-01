@@ -5,6 +5,9 @@ public struct RichText: Shape2D {
     internal let text: AttributedString
     internal let layout: Layout
 
+    @EnvironmentValue(\.self) var environment
+    @EnvironmentValue(\.textBoundaryType) var textBoundaryType
+
     public init(_ text: AttributedString, layout: Layout = .free) {
         self.text = text
         self.layout = layout
@@ -15,26 +18,23 @@ public struct RichText: Shape2D {
     }
 
     public var body: any Geometry2D {
-        EnvironmentReader { environment in
-            let lineFragments = lineFragments(in: environment)
+        let lineFragments = lineFragments(in: environment)
 
-            Union {
-                for fragment in lineFragments {
-                    for glyph in fragment.glyphs {
-                        glyph.shape.translated(glyph.location)
-                    }
-                }
-            }
-            .modifyingBounds { box in
-                environment.textBoundaryType == .shape ? box :
-                    .init(union: lineFragments.map(\.glyphBox))
-            }
-            .usingCGPathFillRule(.winding)
+        lineFragments.map {
+            $0.glyphs.map { $0.shape.translated($0.location) }
         }
+        .modifyingBounds { box in
+            if let box, textBoundaryType == .shape {
+                box
+            } else {
+                .init(union: lineFragments.map(\.glyphBox))
+            }
+        }
+        .usingCGPathFillRule(.winding)
     }
 
     public func readingLineFragments(@UnionBuilder2D _ reader: @escaping ([LineFragment]) -> any Geometry2D) -> any Geometry2D {
-        EnvironmentReader { environment in
+        readEnvironment { environment in
             reader(lineFragments(in: environment))
                 .usingCGPathFillRule(.winding)
         }
@@ -73,12 +73,12 @@ public extension RichText {
         }
     }
 
-    enum BaselineAlignment {
+    enum BaselineAlignment: Sendable {
         case first
         case last
     }
 
-    enum BoundaryType {
+    enum BoundaryType: Sendable {
         case shape
         case lineFragments
     }
