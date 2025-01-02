@@ -8,8 +8,8 @@ This package also contains a `Geometry2D` extension for `CGPath` that can be use
 let package = Package(
     name: "thingamajig",
     dependencies: [
-        .package(url: "https://github.com/tomasf/SwiftSCAD.git", .upToNextMinor(from: "0.8.1")),
-        <b><i>.package(url: "https://github.com/tomasf/RichText.git", from: "0.1.0")</i></b>
+        .package(url: "https://github.com/tomasf/SwiftSCAD.git", .upToNextMinor(from: "0.9.0")),
+        <b><i>.package(url: "https://github.com/tomasf/RichText.git", from: "0.2.0")</i></b>
     ],
     targets: [
         .executableTarget(name: "thingamajig", dependencies: ["SwiftSCAD", <b><i>"RichText"</i></b>])
