@@ -9,7 +9,7 @@ let package = Package(
         .library(name: "RichText", targets: ["RichText"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/tomasf/SwiftSCAD.git", .upToNextMinor(from: "0.8.1")),
+        .package(url: "https://github.com/tomasf/SwiftSCAD.git", .upToNextMinor(from: "0.9.0")),
         .package(url: "https://github.com/apple/swift-log.git", from: "1.6.1"),
     ],
     targets: [

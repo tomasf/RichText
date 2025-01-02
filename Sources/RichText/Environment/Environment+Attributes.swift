@@ -2,7 +2,7 @@ import Foundation
 import SwiftSCAD
 import AppKit
 
-internal extension Environment {
+internal extension EnvironmentValues {
     var nsFont: NSFont {
         let family = self.fontName ?? "Helvetica"
 

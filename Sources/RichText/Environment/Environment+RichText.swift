@@ -1,38 +1,38 @@
 import Foundation
 import SwiftSCAD
 
-internal extension Environment {
-    static private let baselineAlignmentEnvironmentKey: Environment.ValueKey = .init(rawValue: "RichText.BaselineAlignment")
+internal extension EnvironmentValues {
+    static private let baselineAlignmentEnvironmentKey: EnvironmentValues.Key = .init(rawValue: "RichText.BaselineAlignment")
 
     var baselineAlignment: RichText.BaselineAlignment {
         self[Self.baselineAlignmentEnvironmentKey] as? RichText.BaselineAlignment ?? .first
     }
 
-    func withBaselineAlignment(_ alignment: RichText.BaselineAlignment) -> Environment {
+    func withBaselineAlignment(_ alignment: RichText.BaselineAlignment) -> EnvironmentValues {
         setting(key: Self.baselineAlignmentEnvironmentKey, value: alignment)
     }
 }
 
-internal extension Environment {
-    static private let textBoundaryTypeEnvironmentKey: Environment.ValueKey = .init(rawValue: "RichText.TextBoundaryType")
+internal extension EnvironmentValues {
+    static private let textBoundaryTypeEnvironmentKey: EnvironmentValues.Key = .init(rawValue: "RichText.TextBoundaryType")
 
     var textBoundaryType: RichText.BoundaryType {
         self[Self.textBoundaryTypeEnvironmentKey] as? RichText.BoundaryType ?? .shape
     }
 
-    func withTextBoundaryType(_ type: RichText.BoundaryType) -> Environment {
+    func withTextBoundaryType(_ type: RichText.BoundaryType) -> EnvironmentValues {
         setting(key: Self.textBoundaryTypeEnvironmentKey, value: type)
     }
 }
 
-internal extension Environment {
-    static private let textAttributeContainerEnvironmentKey: Environment.ValueKey = .init(rawValue: "RichText.RextAttributeContainer")
+internal extension EnvironmentValues {
+    static private let textAttributeContainerEnvironmentKey: EnvironmentValues.Key = .init(rawValue: "RichText.RextAttributeContainer")
 
     var textAttributeContainer: AttributeContainer {
         self[Self.textAttributeContainerEnvironmentKey] as? AttributeContainer ?? .init()
     }
 
-    func withTextAttributeContainer(_ container: AttributeContainer) -> Environment {
+    func withTextAttributeContainer(_ container: AttributeContainer) -> EnvironmentValues {
         setting(key: Self.textAttributeContainerEnvironmentKey, value: container)
     }
 }

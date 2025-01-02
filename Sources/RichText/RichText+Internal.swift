@@ -2,7 +2,7 @@ import SwiftSCAD
 import AppKit
 
 internal extension RichText {
-    func textOffset(in environment: Environment, contentHeight: CGFloat, firstBaseline: CGFloat, lastBaseline: CGFloat) -> Vector2D {
+    func textOffset(in environment: EnvironmentValues, contentHeight: CGFloat, firstBaseline: CGFloat, lastBaseline: CGFloat) -> Vector2D {
         var offset = Vector2D.zero
         let boxHeight = layout.containerHeight ?? contentHeight
 
@@ -20,7 +20,7 @@ internal extension RichText {
         return offset
     }
 
-    func layoutData(environment: Environment) -> (NSLayoutManager, NSTextStorage, [NSLayoutManager.LineFragment], AffineTransform2D)? {
+    func layoutData(environment: EnvironmentValues) -> (NSLayoutManager, NSTextStorage, [NSLayoutManager.LineFragment], AffineTransform2D)? {
         let attributedString = effectiveAttributedString(in: environment)
         let textStorage = NSTextStorage(attributedString: .init(attributedString))
 
@@ -48,11 +48,11 @@ internal extension RichText {
         return (layoutManager, textStorage, fragments, transform)
     }
 
-    func effectiveAttributedString(in environment: Environment) -> AttributedString {
+    func effectiveAttributedString(in environment: EnvironmentValues) -> AttributedString {
         text.mergingAttributes(environment.richTextAttributes, mergePolicy: .keepCurrent)
     }
 
-    func lineFragments(in environment: Environment) -> [LineFragment] {
+    func lineFragments(in environment: EnvironmentValues) -> [LineFragment] {
         guard let (layoutManager, textStorage, fragments, transform) = layoutData(environment: environment) else {
             return []
         }

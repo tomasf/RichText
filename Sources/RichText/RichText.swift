@@ -5,8 +5,8 @@ public struct RichText: Shape2D {
     internal let text: AttributedString
     internal let layout: Layout
 
-    @EnvironmentValue(\.self) var environment
-    @EnvironmentValue(\.textBoundaryType) var textBoundaryType
+    @Environment(\.self) var environment
+    @Environment(\.textBoundaryType) var textBoundaryType
 
     public init(_ text: AttributedString, layout: Layout = .free) {
         self.text = text
@@ -33,7 +33,7 @@ public struct RichText: Shape2D {
         .usingCGPathFillRule(.winding)
     }
 
-    public func readingLineFragments(@UnionBuilder2D _ reader: @escaping ([LineFragment]) -> any Geometry2D) -> any Geometry2D {
+    public func readingLineFragments(@GeometryBuilder2D _ reader: @escaping ([LineFragment]) -> any Geometry2D) -> any Geometry2D {
         readEnvironment { environment in
             reader(lineFragments(in: environment))
                 .usingCGPathFillRule(.winding)
